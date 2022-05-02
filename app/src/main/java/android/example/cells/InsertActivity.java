@@ -193,6 +193,7 @@ public class InsertActivity extends AppCompatActivity {
                         }
                     }
                     startActivity(intent1);
+                    finish();
                 }
         });
 
