@@ -92,10 +92,10 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void validate(TextView textView, String text) {
                 if(domain.length()==0){
-                    domain.setError("Name is Required");
+                    domain.setError("Domain is Required");
                 }
                 else if(!checkS(domain.getText().toString())){
-                    domain.setError("Invalid Name");
+                    domain.setError("Invalid Domain Name");
                 }
                 else{
                     count[0]++;
@@ -106,10 +106,10 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void validate(TextView textView, String text) {
                 if(dob.length()==0){
-                    dob.setError("Name is Required");
+                    dob.setError("Year of Formation is Required");
                 }
                 else if(!checkN(dob.getText().toString())){
-                    dob.setError("Invalid Name");
+                    dob.setError("Invalid Year");
                 }
                 else{
                     count[0]++;
@@ -120,10 +120,10 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void validate(TextView textView, String text) {
                 if(dep.length()==0){
-                    dep.setError("Name is Required");
+                    dep.setError("Department Name is Required");
                 }
                 else if(!checkS(dep.getText().toString())){
-                    dep.setError("Invalid Name");
+                    dep.setError("Invalid Department Name");
                 }
                 else{
                     count[0]++;
@@ -134,10 +134,10 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void validate(TextView textView, String text) {
                 if(fcord.length()==0){
-                    fcord.setError("Name is Required");
+                    fcord.setError("Faculty Coordinator Name is Required");
                 }
                 else if(!checkS(fcord.getText().toString())){
-                    fcord.setError("Invalid Name");
+                    fcord.setError("Invalid Faculty Coordinator Name ");
                 }
                 else{
                     count[0]++;
@@ -148,10 +148,10 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void validate(TextView textView, String text) {
                 if(pname.length()==0){
-                    pname.setError("Name is Required");
+                    pname.setError(" President's Name is Required");
                 }
                 else if(!checkS(pname.getText().toString())){
-                    pname.setError("Invalid Name");
+                    pname.setError("Invalid President's Name");
                 }
                 else{
                     count[0]++;
