@@ -27,6 +27,7 @@ public class AdminPanel extends AppCompatActivity {
                 Intent intent = new Intent(AdminPanel.this,InsertActivity.class);
                 intent.putExtra("flag",0);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -36,6 +37,7 @@ public class AdminPanel extends AppCompatActivity {
                 Intent intent = new Intent(AdminPanel.this,InsertActivity.class);
                 intent.putExtra("flag",1);
                 startActivity(intent);
+                finish();
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,7 @@ public class AdminPanel extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AdminPanel.this,DeleteActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         view.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +53,7 @@ public class AdminPanel extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AdminPanel.this,ViewActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
