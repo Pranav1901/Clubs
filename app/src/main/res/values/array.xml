@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="S">
+        <item>Technical</item>
+        <item>Cultural</item>
+        <item>Social Service</item>
+        <item>Entrepreneurship</item>
+        <item>Technical and Cultural</item>
+
+    </string-array>
+</resources>

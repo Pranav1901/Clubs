@@ -2,22 +2,29 @@ package android.example.cells;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class InsertActivity extends AppCompatActivity {
     TextView textView;
-    EditText name, domain, dob, dep, fcord, pname;
+    EditText name,dob, dep, fcord, pname;
     Button insert;
     DBHelper DB;
+    String domain;
+    Spinner spinner ;
+    ConstraintLayout layout;
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -28,7 +35,6 @@ public class InsertActivity extends AppCompatActivity {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             // get the content of both the edit text
             String nameT = name.getText().toString();
-            String domainT = domain.getText().toString();
             String dobT = dob.getText().toString();
             String depT = dep.getText().toString();
             String fcordT = fcord.getText().toString();
@@ -37,7 +43,7 @@ public class InsertActivity extends AppCompatActivity {
 
 
             // check whether both the fields are empty or not
-            boolean flag = !nameT.isEmpty() && !domainT.isEmpty()&& !dobT.isEmpty() && !depT.isEmpty() && !fcordT.isEmpty() && !pnameT.isEmpty();
+            boolean flag = !nameT.isEmpty() && !dobT.isEmpty() && !depT.isEmpty() && !fcordT.isEmpty() && !pnameT.isEmpty();
             System.out.println(flag);
             if(flag) insert.setVisibility(View.VISIBLE);
         }
@@ -67,12 +73,13 @@ public class InsertActivity extends AppCompatActivity {
             insert.setText("UPDATE");
         }
         name = findViewById(R.id.name);
-        domain = findViewById(R.id.domain);
         dob = findViewById(R.id.dob);
         dep = findViewById(R.id.department);
         fcord = findViewById(R.id.fCordinator);
         pname = findViewById(R.id.president);
         DB = new DBHelper(this);
+        spinner = findViewById(R.id.domain);
+        layout = findViewById(R.id.layout);
         int count [] = new int [1];
         name.addTextChangedListener(new TextValidator(name) {
             @Override
@@ -88,20 +95,38 @@ public class InsertActivity extends AppCompatActivity {
                 }
             }
         });
-        domain.addTextChangedListener(new TextValidator(domain) {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void validate(TextView textView, String text) {
-                if(domain.length()==0){
-                    domain.setError("Domain is Required");
-                }
-                else if(!checkS(domain.getText().toString())){
-                    domain.setError("Invalid Domain Name");
-                }
-                else{
-                    count[0]++;
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    domain = adapterView.getItemAtPosition(i).toString();
+                  //  rl.setBackgroundColor(Color.parseColor(adapterView.getItemAtPosition(i).toString()));
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
             }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
+
+
+//        domain.addTextChangedListener(new TextValidator(domain) {
+//            @Override
+//            public void validate(TextView textView, String text) {
+//                if(domain.length()==0){
+//                    domain.setError("Domain is Required");
+//                }
+//                else if(!checkS(domain.getText().toString())){
+//                    domain.setError("Invalid Domain Name");
+//                }
+//                else{
+//                    count[0]++;
+//                }
+//            }
+//        });
+
         dob.addTextChangedListener(new TextValidator(dob) {
             @Override
             public void validate(TextView textView, String text) {
@@ -167,7 +192,7 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nameTxt = name.getText().toString();
-                String domaintTxt = domain.getText().toString();
+                String domaintTxt = domain;
                 String dobTxt = dob.getText().toString();
                 String depTXT = dep.getText().toString();
                 String fcordTXT = fcord.getText().toString();
