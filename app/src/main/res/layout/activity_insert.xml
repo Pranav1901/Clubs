@@ -50,16 +50,15 @@
         android:inputType="text"/>
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/domain"
         android:layout_marginTop="64dp"
         android:background="@drawable/rounded_corner"
-        android:hint="Domain"
         android:textColorHint="@color/hintcolor"
         android:paddingLeft="10dp"
         android:fontFamily="@font/reem_kufi"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,24 +66,6 @@
         android:layout_margin="30dp"
         android:entries="@array/S"
         />
-<!--    <EditText-->
-<!--        android:id="@+id/domain"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:background="@drawable/rounded_corner"-->
-<!--        android:hint="Domain"-->
-<!--        android:textColorHint="@color/hintcolor"-->
-<!--        android:paddingLeft="10dp"-->
-<!--        android:fontFamily="@font/reem_kufi"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="26sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/name"-->
-<!--        android:layout_margin="30dp"-->
-<!--        android:inputType="text"/>-->
     <EditText
         android:id="@+id/dob"
         android:layout_width="match_parent"
@@ -157,6 +138,24 @@
         app:layout_constraintTop_toBottomOf="@+id/fCordinator"
         android:layout_margin="30dp"
         android:inputType="text"/>
+    <EditText
+        android:id="@+id/Nomem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rounded_corner"
+        android:hint="No of total Members"
+        android:textColorHint="@color/hintcolor"
+        android:paddingLeft="10dp"
+        android:fontFamily="@font/reem_kufi"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/president"
+        android:layout_margin="30dp"
+        android:inputType="text"/>
 
     <Button
         android:id="@+id/btninset"
@@ -171,7 +170,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/president" />
+        app:layout_constraintTop_toBottomOf="@+id/Nomem" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

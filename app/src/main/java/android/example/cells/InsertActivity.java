@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 public class InsertActivity extends AppCompatActivity {
     TextView textView;
-    EditText name,dob, dep, fcord, pname;
+    EditText name,dob, dep, fcord, pname,Nomem;
     Button insert;
     DBHelper DB;
     String domain;
@@ -39,11 +40,12 @@ public class InsertActivity extends AppCompatActivity {
             String depT = dep.getText().toString();
             String fcordT = fcord.getText().toString();
             String pnameT = pname.getText().toString();
+            String nomemT =Nomem.getText().toString();
 
 
 
             // check whether both the fields are empty or not
-            boolean flag = !nameT.isEmpty() && !dobT.isEmpty() && !depT.isEmpty() && !fcordT.isEmpty() && !pnameT.isEmpty();
+            boolean flag = !nameT.isEmpty() && !dobT.isEmpty() && !depT.isEmpty() && !fcordT.isEmpty() && !pnameT.isEmpty() && !nomemT.isEmpty();
             System.out.println(flag);
             if(flag) insert.setVisibility(View.VISIBLE);
         }
@@ -77,6 +79,7 @@ public class InsertActivity extends AppCompatActivity {
         dep = findViewById(R.id.department);
         fcord = findViewById(R.id.fCordinator);
         pname = findViewById(R.id.president);
+        Nomem = findViewById(R.id.Nomem);
         DB = new DBHelper(this);
         spinner = findViewById(R.id.domain);
         layout = findViewById(R.id.layout);
@@ -187,6 +190,24 @@ public class InsertActivity extends AppCompatActivity {
                 }
             }
         });
+        Nomem.addTextChangedListener(new TextValidator(Nomem) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if(Nomem.length()==0){
+                    Nomem.setError(" No Of Members is Required");
+                }
+                else if(!checkM(Nomem.getText().toString())){
+                    Nomem.setError("Invalid No of Member's");
+                }
+                else{
+                    count[0]++;
+                }
+                System.out.println("Count = "+count[0]);
+                if(count[0]>=6){
+                    insert.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,9 +218,10 @@ public class InsertActivity extends AppCompatActivity {
                 String depTXT = dep.getText().toString();
                 String fcordTXT = fcord.getText().toString();
                 String pnameTXT = pname.getText().toString();
+                String NomemTXT = Nomem.getText().toString();
                 Intent intent1 = new Intent(InsertActivity.this,AdminPanel.class);
                     if(flag==0){
-                        boolean checkinsertdata = DB.insertclubdata(nameTxt,domaintTxt,dobTxt,depTXT,fcordTXT,pnameTXT);
+                        boolean checkinsertdata = DB.insertclubdata(nameTxt,domaintTxt,dobTxt,depTXT,fcordTXT,pnameTXT,NomemTXT);
                         if(checkinsertdata==true){
                             Toast.makeText(InsertActivity.this,"New Entry Inserted",Toast.LENGTH_SHORT).show();
                         }
@@ -208,7 +230,7 @@ public class InsertActivity extends AppCompatActivity {
                         }
                     }
                     else{
-                        boolean checkupdatedata = DB.updateclubdata(nameTxt,domaintTxt,dobTxt,depTXT,fcordTXT,pnameTXT);
+                        boolean checkupdatedata = DB.updateclubdata(nameTxt,domaintTxt,dobTxt,depTXT,fcordTXT,pnameTXT,NomemTXT);
                         if(checkupdatedata==true){
                             Toast.makeText(InsertActivity.this,"Entry Updated",Toast.LENGTH_SHORT).show();
 
@@ -227,6 +249,11 @@ public class InsertActivity extends AppCompatActivity {
         if(checkS(num))return false;
         int x = Integer.parseInt(num);
         if(x<2002||x>2022)return false;
+        else return true;
+    }
+    private  boolean checkM(String num){
+        int x = Integer.parseInt(num);
+        if(x<0||x>5000)return false;
         else return true;
     }
     private  boolean checkS(String name){

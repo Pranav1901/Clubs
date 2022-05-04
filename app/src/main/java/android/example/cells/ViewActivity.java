@@ -114,6 +114,7 @@ public class ViewActivity extends AppCompatActivity implements ItemClickListener
         buffer1.append("Department : "+res.getString(3)+"\n");
         buffer1.append("Faculty Coordinator : "+res.getString(4)+"\n");
         buffer1.append("President Name : "+res.getString(5)+"\n");
+        buffer1.append("No of Active Members :"+res.getString(6)+"\n");
         AlertDialog.Builder builder = new AlertDialog.Builder(ViewActivity.this);
         builder.setCancelable(true);
         builder.setTitle("Club Details");

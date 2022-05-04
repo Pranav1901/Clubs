@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table clubdetails(name TEXT primary key,domain TEXT,dob TEXT,dep TEXT,fcord TEXT,pname TEXT)");
+        DB.execSQL("create Table clubdetails(name TEXT primary key,domain TEXT,dob TEXT,dep TEXT,fcord TEXT,pname TEXT,noofmem TEXT)");
     }
 
     @Override
@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists clubdetails ");
     }
 
-    public boolean insertclubdata(String name,String domain, String dob,String dep,String fcord,String Pname){
+    public boolean insertclubdata(String name,String domain, String dob,String dep,String fcord,String Pname,String noofmem){
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name",name);
@@ -32,12 +32,13 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("dep",dep);
         contentValues.put("fcord",fcord);
         contentValues.put("Pname",Pname);
+        contentValues.put("noofmem",noofmem);
 
         long result = DB.insert("Clubdetails",null,contentValues);
         if(result==-1)return false;
         else return true;
     }
-    public boolean updateclubdata(String name,String domain, String dob,String dep,String fcord,String Pname){
+    public boolean updateclubdata(String name,String domain, String dob,String dep,String fcord,String Pname,String noofmem){
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("domain",domain);
@@ -45,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("dep",dep);
         contentValues.put("fcord",fcord);
         contentValues.put("Pname",Pname);
+        contentValues.put("noofmem",noofmem);
+
         Cursor cursor = DB.rawQuery("Select * from Clubdetails where name = ?",new String[]{name});
         if(cursor.getCount()>0){
             long result = DB.update("Clubdetails",contentValues,"name=?",new String[]{name});
